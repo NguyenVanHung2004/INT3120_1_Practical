@@ -1,5 +1,6 @@
 package com.example.dicerollerapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -17,6 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         val buttonRoll = findViewById<Button>(R.id.btnRoll);
         val diceImage = findViewById<ImageView>(R.id.ivDice)
+        val btnDemo = findViewById<Button>(R.id.btnDemo)
         buttonRoll.setOnClickListener {
             val value = Random.nextInt(1,7)
 
@@ -29,6 +31,11 @@ class MainActivity : AppCompatActivity() {
                 else -> R.drawable.dice_6
             }
             diceImage.setImageResource(imageSource)
+        }
+
+        btnDemo.setOnClickListener {
+            val intent = Intent(this, ImplicitIntentDemoActivity::class.java)
+            startActivity(intent)
         }
 
 
