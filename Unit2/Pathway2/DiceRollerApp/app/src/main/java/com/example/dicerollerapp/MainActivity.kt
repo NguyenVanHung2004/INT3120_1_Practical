@@ -2,6 +2,7 @@ package com.example.dicerollerapp
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.Toast
@@ -41,6 +42,13 @@ class MainActivity : AppCompatActivity() {
                 5 -> R.drawable.dice_5
                 else -> R.drawable.dice_6
             }
+            Log.d("22028118",": $value")
+            Log.v("LogDemo", "Verbose: chi tiết li ti")
+            Log.d("LogDemo", "Debug: dành cho dev")
+            Log.i("LogDemo", "Info: trạng thái bình thường")
+            Log.w("LogDemo", "Warn: có vấn đề nhưng vẫn chạy")
+            Log.e("LogDemo", "Error: lỗi thao tác hiện tại")
+            Log.wtf("LogDemo","App sẽ bị sập")
             diceImage.setImageResource(imageSource)
         }
 
