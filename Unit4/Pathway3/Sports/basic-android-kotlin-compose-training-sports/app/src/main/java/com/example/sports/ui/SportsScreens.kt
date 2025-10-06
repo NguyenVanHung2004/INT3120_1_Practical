@@ -342,6 +342,41 @@ private fun SportsDetail(
     }
 }
 
+@Composable
+fun SportsListAndDetail(
+    sports: List<Sport>,
+    selectedSport: Sport,
+    onClick: (Sport) -> Unit,
+    onBackPressed: () -> Unit,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp),
+){
+        Row (
+            modifier = modifier
+        ){
+            SportsList(
+                sports = sports,
+                onClick = onClick,
+                contentPadding = contentPadding,
+                modifier = Modifier
+                    .weight(2f)
+                    .padding(
+                        top = dimensionResource(R.dimen.padding_medium),
+                        start = dimensionResource(R.dimen.padding_medium),
+                        end = dimensionResource(R.dimen.padding_medium),
+                    )
+            )
+            SportsDetail(
+                selectedSport = selectedSport,
+                modifier = Modifier.weight(3f),
+                contentPadding = contentPadding,
+                onBackPressed = onBackPressed,
+            )
+        }
+
+}
+
+
 @Preview
 @Composable
 fun SportsListItemPreview() {
@@ -361,6 +396,23 @@ fun SportsListPreview() {
             SportsList(
                 sports = LocalSportsDataProvider.getSportsData(),
                 onClick = {},
+            )
+        }
+    }
+}
+
+@Preview(widthDp = 1000)
+@Composable
+fun SportsListAndDetailsPreview() {
+    SportsTheme {
+        Surface {
+            SportsListAndDetail(
+                sports = LocalSportsDataProvider.getSportsData(),
+                selectedSport = LocalSportsDataProvider.getSportsData().getOrElse(0) {
+                    LocalSportsDataProvider.defaultSport
+                },
+                onClick = {},
+                onBackPressed = {},
             )
         }
     }
