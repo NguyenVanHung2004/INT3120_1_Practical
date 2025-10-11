@@ -22,9 +22,7 @@ class DefaultAppContainer : AppContainer {
         retrofit.create(AmphibiansApiService::class.java)
     }
 
-    /**
-     * DI implementation for Amphibians repository
-     */
+
     override val amphibiansRepository: AmphibiansRepository by lazy {
         DefaultAmphibiansRepository(retrofitService)
     }
