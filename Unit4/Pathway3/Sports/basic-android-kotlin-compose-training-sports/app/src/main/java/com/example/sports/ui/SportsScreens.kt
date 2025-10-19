@@ -54,6 +54,7 @@ import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
@@ -192,7 +193,10 @@ private fun SportsListItem(
 ) {
     Card(
         elevation = CardDefaults.cardElevation(),
-        modifier = modifier,
+        modifier = modifier.paint(
+                painter = painterResource(R.drawable.ic_badmint_banner), // file .9.png
+        contentScale = ContentScale.FillBounds    // để 9-patch co giãn theo Box
+    ),
         shape = RoundedCornerShape(dimensionResource(R.dimen.card_corner_radius)),
         onClick = { onItemClick(sport) }
     ) {

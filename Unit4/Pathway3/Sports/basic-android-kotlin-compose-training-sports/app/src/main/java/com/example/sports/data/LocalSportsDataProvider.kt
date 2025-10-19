@@ -44,7 +44,7 @@ object LocalSportsDataProvider {
                 playerCount = 1,
                 olympic = true,
                 imageResourceId = R.drawable.ic_badminton_square,
-                sportsImageBanner = R.drawable.ic_badminton_banner,
+                sportsImageBanner = R.drawable.ic_badmint_banner,
                 sportDetails = R.string.sport_detail_text
             ),
             Sport(
