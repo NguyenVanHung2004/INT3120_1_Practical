@@ -1,47 +1,29 @@
 package com.example.flightsearch
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.activity.viewModels
+
+import com.example.flightsearch.ui.FlightScreen
+import com.example.flightsearch.ui.FlightViewModel
 import com.example.flightsearch.ui.theme.FlightSearchTheme
 
 class MainActivity : ComponentActivity() {
+    private val vm by viewModels<FlightViewModel>()
     override fun onCreate(savedInstanceState: Bundle?) {
+        val listRoot = assets.list("")?.toList().orEmpty()
+        val listDbDir = try { assets.list("database")?.toList().orEmpty() } catch (_: Exception) { emptyList() }
+        Log.d("ASSETS", "root: $listRoot")
+        Log.d("ASSETS", "database/: $listDbDir")
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
             FlightSearchTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
+                FlightScreen(vm)
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    FlightSearchTheme {
-        Greeting("Android")
     }
 }
