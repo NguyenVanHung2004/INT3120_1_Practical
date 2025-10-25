@@ -16,7 +16,9 @@
 
 package com.example.waterme.worker
 
+import android.Manifest
 import android.content.Context
+import androidx.annotation.RequiresPermission
 import androidx.work.CoroutineWorker
 import androidx.work.WorkerParameters
 import com.example.waterme.R
@@ -26,6 +28,7 @@ class WaterReminderWorker(
     workerParams: WorkerParameters
 ) : CoroutineWorker(context, workerParams) {
 
+    @RequiresPermission(Manifest.permission.POST_NOTIFICATIONS)
     override suspend fun doWork(): Result {
 
         val plantName = inputData.getString(nameKey)
