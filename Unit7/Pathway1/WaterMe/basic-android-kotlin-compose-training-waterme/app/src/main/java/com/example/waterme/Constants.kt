@@ -38,6 +38,8 @@ const val REQUEST_CODE = 0
 
 // Reminder schedule
 const val FIVE_SECONDS: Long = 5
+const val TEN_SECONDS : Long = 10
+const val FIFTY_SECONDS : Long = 10
 const val ONE_DAY: Long = 1
 const val SEVEN_DAYS: Long = 7
 const val THIRTY_DAYS: Long = 30
