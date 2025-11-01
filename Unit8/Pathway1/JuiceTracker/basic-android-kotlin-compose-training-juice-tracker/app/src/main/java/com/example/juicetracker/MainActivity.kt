@@ -13,38 +13,23 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
-package com.example.waterme
+package com.example.juicetracker
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
-import androidx.compose.ui.Modifier
-import com.example.waterme.ui.WaterMeApp
-import com.example.waterme.ui.theme.WaterMeTheme
+import androidx.activity.enableEdgeToEdge
+import com.example.juicetracker.ui.JuiceTrackerApp
+import com.example.juicetracker.ui.theme.JuiceTrackerTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
+        enableEdgeToEdge()
         super.onCreate(savedInstanceState)
         setContent {
-            WaterMeTheme {
-                // A surface container using the 'background' color from the theme
-                Surface(
-                    modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
-                ) {
-                    WaterMeApp()
-                }
+            JuiceTrackerTheme {
+                JuiceTrackerApp()
             }
         }
     }
-}
-object Actions {
-    const val ACTION_CUSTOM_WATERED =
-        "com.example.waterme.ACTION_CUSTOM_WATERED"
-
-    const val EXTRA_PLANT_NAME = "extra_plant_name"
 }

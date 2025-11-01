@@ -16,6 +16,7 @@
 
 package com.example.waterme.ui
 
+import android.content.Intent
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -44,6 +45,7 @@ import com.example.waterme.model.Plant
 import androidx.compose.ui.Modifier
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.res.dimensionResource
 import androidx.compose.ui.res.stringResource
@@ -58,6 +60,8 @@ import com.example.waterme.SEVEN_DAYS
 import com.example.waterme.THIRTY_DAYS
 import com.example.waterme.data.DataSource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.localbroadcastmanager.content.LocalBroadcastManager
+import com.example.waterme.Actions
 import com.example.waterme.FIFTY_SECONDS
 import com.example.waterme.TEN_SECONDS
 import java.util.concurrent.TimeUnit
@@ -116,7 +120,13 @@ fun PlantListContent(
             plantName = stringResource(selectedPlant.name),
             onScheduleReminder = onScheduleReminder
         )
+        val intent = Intent(Actions.ACTION_CUSTOM_WATERED).apply {
+            putExtra(Actions.EXTRA_PLANT_NAME, selectedPlant.name)
+        }
+        val context = LocalContext.current
+        LocalBroadcastManager.getInstance(context).sendBroadcast(intent)
     }
+
 }
 
 @Composable

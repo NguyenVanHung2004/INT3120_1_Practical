@@ -27,6 +27,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.WaterMe"
         tools:targetApi="33">
+        <receiver
+            android:name=".receivers.PowerReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+            </intent-filter>
+        </receiver>
         <activity
             android:name=".MainActivity"
             android:exported="true"
