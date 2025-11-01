@@ -44,6 +44,7 @@ import androidx.compose.ui.text.input.ImeAction
 import androidx.compose.ui.unit.dp
 import com.example.juicetracker.R
 import com.example.juicetracker.data.Juice
+import com.example.juicetracker.data.JuiceColor
 import com.example.juicetracker.ui.JuiceTrackerViewModel
 import java.util.Locale
 
@@ -99,16 +100,18 @@ fun SheetForm(
     onSubmit: () -> Unit,
     modifier: Modifier = Modifier,
 ) {
+
     Column(modifier.padding(horizontal = 16.dp)) {
         TextInputRow(
             inputLabel = stringResource(R.string.juice_name),
             fieldValue = juice.name,
             onValueChange = { name -> onUpdateJuice(juice.copy(name = name)) }
         )
-        TextInputRow(
-            inputLabel = stringResource(R.string.juice_description),
-            fieldValue = juice.description,
-            onValueChange = { description -> onUpdateJuice(juice.copy(description = description)) }
+        ColorSpinnerRow(
+            colorSpinnerPosition = findColorIndex(juice.color),
+            onColorChange = { color ->
+                onUpdateJuice(juice.copy(color = JuiceColor.values()[color].name))
+            }
         )
         ButtonRow(
             modifier = Modifier.align(Alignment.CenterHorizontally),
@@ -190,4 +193,8 @@ fun InputRow(
             content()
         }
     }
+}
+private fun findColorIndex(color: String): Int {
+    val juiceColor = JuiceColor.valueOf(color)
+    return JuiceColor.values().indexOf(juiceColor)
 }
